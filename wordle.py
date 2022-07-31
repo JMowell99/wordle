@@ -17,16 +17,15 @@ game = open("game.html", "r")
 out = game.readlines()
 game.close()
 line = 0
-valid()
+check = valid()
 for x in range(5):
     response = []
-    while (len(guess) != 5) or valid() == False:
+    while (len(guess) != 5) or (check == False):
         if len(guess) != 5:
             guess = input("Guess must be 5 letters. Please try again: ")
         if (guess in words) == False:
             guess = input("Not a valid word. Please try again: ")
-            guess = guess + '\n'
-            valid()
+            check = valid()
     for x in range(5):
         gLetter = guess[x]
         sLetter = solution[x]
@@ -46,4 +45,5 @@ for x in range(5):
         print("Correct!")
         exit()
     guess = input("Incorrect. Try again: ")
+    check = valid()
 print(f"You lose. The correct answer was {solution}")
